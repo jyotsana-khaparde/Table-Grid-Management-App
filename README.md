@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Table Grid Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a table grid management application built using React, where users can drag tables into a grid area and connect columns between tables. The app utilizes drag-and-drop functionality for both tables and columns, allowing dynamic grid management. Additionally, users can remove tables from the grid, and all associated connection lines will be removed automatically.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Drag-and-Drop Tables: Users can drag tables from a left panel and drop them into the grid area.
+- Column Dragging: Columns can be dragged between tables to establish relationships.
+- Dynamic Connection Lines: Connection lines are displayed between tables to indicate column relationships.
+- Table Removal: Users can remove tables from the grid, and all associated connection lines will be removed as well.
+- Resizable and Draggable Tables: Tables can be resized and repositioned within the grid area.
+
+## Technologies Used
+
+- React: A JavaScript library for building user interfaces.
+- React DnD: A drag-and-drop library for React that provides the drag-and-drop functionality for tables and columns.
+- React RND (Resizable and Draggable): A library for making elements resizable and draggable, used for the tables.
+- SVG: Used to draw connection lines between tables, adjusted dynamically as tables are repositioned.
+
+## Why These Technologies?
+
+- React: Provides a component-based architecture and makes it easier to manage state and UI efficiently.
+- React DnD: A robust drag-and-drop solution designed for React applications, perfect for our use case where we need to drag and drop tables and columns.
+- React RND: Offers simple and flexible resizing and dragging of elements within the React ecosystem.
+- SVG: Ideal for drawing and manipulating dynamic, scalable connection lines between tables.
+
+## Setup Instructions
+
+Follow these steps to get the app running locally:
+
+1. Clone the Repository
+
+### `git clone https://github.com/your-username/table-grid-management-app.git`
+
+### `cd table-grid-management-app`
+
+2. Install Dependencies
+
+### `npm install`
+
+3. Run the Application
+   After installing the dependencies, you can start the development server:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The app will be running on http://localhost:3000.
