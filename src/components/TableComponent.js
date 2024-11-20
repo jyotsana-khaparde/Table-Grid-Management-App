@@ -115,6 +115,8 @@ const Table = ({
       onDragStop={handleDragStop}
       onResizeStop={handleResizeStop}
       bounds="parent"
+      minWidth={200} // Set your desired minimum width
+      minHeight={150} // Set your desired minimum height
       style={{
         border: "1px solid #000",
         backgroundColor: "#fff",
