@@ -110,7 +110,7 @@ const Table = ({
 
   return (
     <Rnd
-      size={table.size || { width: 200, height: 100 }}
+      size={table.size || { width: 200 }}
       position={table.position}
       onDragStop={handleDragStop}
       onResizeStop={handleResizeStop}
