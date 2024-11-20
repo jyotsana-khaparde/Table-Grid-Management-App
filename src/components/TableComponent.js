@@ -124,12 +124,25 @@ const Table = ({
     >
       <div ref={drop}>
         <div
-          style={{ padding: "10px", fontWeight: "bold", textAlign: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "10px",
+            fontWeight: "bold",
+          }}
         >
           <span>{table.name}</span>
-          <button onClick={handleRemoveTable} style={{ marginLeft: "10px" }}>
-            Remove
-          </button>
+          <span
+            onClick={handleRemoveTable}
+            style={{
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+            title="Remove Table"
+          >
+            ✖️
+          </span>
         </div>
         {table.columns.map((column) => (
           <Column
