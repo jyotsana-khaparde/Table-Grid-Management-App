@@ -60,10 +60,7 @@ const Table = ({
   };
 
   const handleRemoveTable = () => {
-    // Remove table from gridTables
     setGridTables((prevTables) => prevTables.filter((t) => t.id !== table.id));
-
-    // Remove all connections linked to the table
     setConnections((prevConnections) =>
       prevConnections.filter(
         (connection) =>
@@ -73,22 +70,10 @@ const Table = ({
     );
   };
 
-  // Define the drop behavior for columns
-  const [, drop] = useDrop({
-    accept: "COLUMN",
-    drop: (item) => {
-      if (item.tableId !== table.id) {
-        moveColumn(item.column, item.tableId, table.id);
-        handleColumnDrop(item.tableId, table.id, item.column);
-      }
-    },
-  });
-
   const moveColumn = (column, fromTableId, toTableId) => {
     setGridTables((prevTables) => {
       return prevTables.map((t) => {
         if (t.id === fromTableId) {
-          // Remove the column from the source table
           return {
             ...t,
             columns: t.columns.filter(
@@ -97,7 +82,6 @@ const Table = ({
           };
         }
         if (t.id === toTableId) {
-          // Add the column to the target table
           return {
             ...t,
             columns: [...t.columns, column],
@@ -108,6 +92,16 @@ const Table = ({
     });
   };
 
+  const [, drop] = useDrop({
+    accept: "COLUMN",
+    drop: (item) => {
+      if (item.tableId !== table.id) {
+        moveColumn(item.column, item.tableId, table.id);
+        handleColumnDrop(item.tableId, item.column, table.id, item.column);
+      }
+    },
+  });
+
   return (
     <Rnd
       size={table.size || { width: 200 }}
@@ -115,8 +109,8 @@ const Table = ({
       onDragStop={handleDragStop}
       onResizeStop={handleResizeStop}
       bounds="parent"
-      minWidth={200} // Set your desired minimum width
-      minHeight={150} // Set your desired minimum height
+      minWidth={200}
+      minHeight={150}
       style={{
         border: "1px solid #000",
         backgroundColor: "#fff",

@@ -13,18 +13,16 @@ const GridArea = ({
   const [, drop] = useDrop({
     accept: "TABLE",
     drop: (item, monitor) => {
-      // Get the position of the drop relative to the grid area
-      const clientOffset = monitor.getClientOffset(); // Position relative to the viewport
+      const clientOffset = monitor.getClientOffset();
       const gridAreaRect = document
         .querySelector(".grid-area")
-        .getBoundingClientRect(); // Position of the grid container
+        .getBoundingClientRect();
 
       const dropPosition = {
         x: clientOffset.x - gridAreaRect.x,
         y: clientOffset.y - gridAreaRect.y,
       };
 
-      // Check if the table already exists in the grid
       const tableExists = gridTables.some(
         (table) => table.id === item.table.id
       );

@@ -5,7 +5,6 @@ const ConnectionLines = ({ connections, gridTables }) => {
 
   useEffect(() => {
     const gridArea = document.querySelector(".grid-area");
-
     const handleScroll = () => {
       setScrollOffset({
         x: gridArea.scrollLeft,
@@ -13,21 +12,33 @@ const ConnectionLines = ({ connections, gridTables }) => {
       });
     };
 
-    // Add scroll event listener
     gridArea.addEventListener("scroll", handleScroll);
-
-    return () => {
-      // Remove scroll event listener
-      gridArea.removeEventListener("scroll", handleScroll);
-    };
+    return () => gridArea.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getTablePosition = (tableId) => {
+  const getColumnPosition = (tableId, columnName) => {
     const table = gridTables.find((t) => t.id === tableId);
-    if (!table) return { x: 0, y: 0 };
+
+    if (!table) {
+      console.warn("Table not found during drag:", tableId);
+      return null;
+    }
+
+    const columnIndex = table.columns.findIndex(
+      (col) => col.name === columnName
+    );
+    if (columnIndex === -1) {
+      console.warn(`Column not found during drag: ${columnName}`);
+      return null;
+    }
+
+    const tablePosition = table.position || { x: 0, y: 0 };
+    const columnHeight = 40; // Approximate row height
+    const columnOffsetY = columnIndex * columnHeight + 50;
+
     return {
-      x: table.position.x + 100, // Adjust based on table dimensions
-      y: table.position.y + 75, // Adjust based on table dimensions
+      x: tablePosition.x + 150,
+      y: tablePosition.y + columnOffsetY,
     };
   };
 
@@ -40,22 +51,34 @@ const ConnectionLines = ({ connections, gridTables }) => {
         width: "100%",
         height: "100%",
         pointerEvents: "none",
+        zIndex: 1,
       }}
     >
       {connections.map((connection, index) => {
-        const source = getTablePosition(connection.sourceTable);
-        const target = getTablePosition(connection.targetTable);
+        const sourcePos = getColumnPosition(
+          connection.sourceTable,
+          connection.sourceColumn
+        );
+        const targetPos = getColumnPosition(
+          connection.targetTable,
+          connection.targetColumn
+        );
 
-        if (!source || !target) return null;
+        if (!sourcePos && !targetPos) return null;
+
+        const x1 = sourcePos ? sourcePos.x - scrollOffset.x : targetPos.x - 100;
+        const y1 = sourcePos ? sourcePos.y - scrollOffset.y : targetPos.y;
+        const x2 = targetPos ? targetPos.x - scrollOffset.x : sourcePos.x + 100;
+        const y2 = targetPos ? targetPos.y - scrollOffset.y : sourcePos.y;
 
         return (
           <line
             key={index}
-            x1={source.x - scrollOffset.x}
-            y1={source.y - scrollOffset.y}
-            x2={target.x - scrollOffset.x}
-            y2={target.y - scrollOffset.y}
-            stroke="orange"
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke="blue"
             strokeWidth="2"
           />
         );
