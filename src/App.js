@@ -10,19 +10,12 @@ const App = () => {
   const [gridTables, setGridTables] = useState([]);
   const [connections, setConnections] = useState([]);
 
-  // Adjusted handleColumnDrop function to create connections at the column level
-  const handleColumnDrop = (
-    sourceTableId,
-    sourceColumn,
-    targetTableId,
-    targetColumn
-  ) => {
+  const handleColumnDrop = (sourceTableId, targetTableId, column) => {
     const exists = connections.some(
       (conn) =>
         conn.sourceTable === sourceTableId &&
         conn.targetTable === targetTableId &&
-        conn.sourceColumn === sourceColumn.name &&
-        conn.targetColumn === targetColumn.name
+        conn.column === column.name
     );
 
     if (!exists) {
@@ -30,9 +23,8 @@ const App = () => {
         ...prev,
         {
           sourceTable: sourceTableId,
-          sourceColumn: sourceColumn.name,
           targetTable: targetTableId,
-          targetColumn: targetColumn.name,
+          column: column.name,
         },
       ]);
     }
